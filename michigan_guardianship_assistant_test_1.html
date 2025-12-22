@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michigan Guardianship Assistant - Test Preview</title>
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header h1 {
+      color: #1e3a5f;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    
+    .header p {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .main-content {
+      flex: 1;
+      display: flex;
+      padding: 40px;
+      gap: 40px;
+    }
+    
+    .info-panel {
+      flex: 1;
+      max-width: 500px;
+    }
+    
+    .info-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    
+    .info-card h2 {
+      color: #1e3a5f;
+      font-size: 18px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    
+    .info-card p {
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    
+    .disclaimer {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 15px;
+    }
+    
+    .disclaimer p {
+      color: #856404;
+      font-size: 13px;
+      margin: 0;
+    }
+    
+    .test-queries {
+      list-style: none;
+    }
+    
+    .test-queries li {
+      background: #f5f5f5;
+      padding: 10px 15px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      color: #333;
+      font-size: 14px;
+    }
+    
+    .test-queries li:hover {
+      background: #e8e8e8;
+    }
+    
+    .chat-panel {
+      flex: 1;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .chat-container {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      flex: 1;
+      min-height: 600px;
+    }
+    
+    df-messenger {
+      --df-messenger-font-color: #000;
+      --df-messenger-font-family: Roboto, sans-serif;
+      --df-messenger-chat-background: #f3f6fc;
+      --df-messenger-message-user-background: #d3e3fd;
+      --df-messenger-message-bot-background: #fff;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .footer {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 15px 40px;
+      text-align: center;
+    }
+    
+    .footer p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+    }
+    
+    @media (max-width: 900px) {
+      .main-content {
+        flex-direction: column;
+        padding: 20px;
+      }
+      
+      .info-panel, .chat-panel {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Michigan Minor Guardianship Information Assistant</h1>
+    <p>Beta Test Preview - Genesee County, Michigan</p>
+  </div>
+  
+  <div class="main-content">
+    <div class="info-panel">
+      <div class="info-card">
+        <h2>About This Assistant</h2>
+        <p>This AI assistant provides general information about minor guardianship procedures in Genesee County, Michigan. It can help you understand:</p>
+        <ul style="margin-left: 20px; margin-top: 10px; color: #444; line-height: 1.8;">
+          <li>Types of guardianship (Full, Limited, Temporary)</li>
+          <li>Filing procedures and required forms</li>
+          <li>Court fees and processes</li>
+          <li>Legal requirements under Michigan law</li>
+        </ul>
+        
+        <div class="disclaimer">
+          <p><strong>Important:</strong> This tool provides general legal information only, not legal advice. For advice specific to your situation, please consult a licensed Michigan attorney.</p>
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <h2>Try These Test Questions</h2>
+        <ul class="test-queries">
+          <li>"What's the difference between full and limited guardianship?"</li>
+          <li>"How much does it cost to file in Genesee County?"</li>
+          <li>"How do I get guardianship of my grandchild?"</li>
+          <li>"Will the judge approve my case?"</li>
+          <li>"Can you help me with a divorce?"</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="chat-panel">
+      <div class="chat-container">
+        <df-messenger
+          location="us-central1"
+          project-id="guardianship-479923"
+          agent-id="b1d332c2-276c-498b-814b-d11c1a8cac59"
+          language-code="en"
+          max-query-length="-1"
+          allow-feedback="all">
+          <df-messenger-chat
+            chat-title="Michigan Guardianship Assistant">
+          </df-messenger-chat>
+        </df-messenger>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>University of Michigan Law School - Independent Study Project | Professor Sankaran | Beta Version - December 2024</p>
+  </div>
+</body>
+</html>
